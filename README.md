@@ -1,16 +1,13 @@
 # SFDX oldprofile-modifier-plugin
+Thank you Sean for this awesome package! Original version of the package can be found here https://github.com/seanrussell/profile-modifier-plugin
 
-A plugin for Salesforce DX CLI that provides ability to add, edit, and remove Apex Classes, Visualforce Pages, Objects, and Fields from profiles within SFDX projects (an sfdx-project.json file in the root of the project directory is required). 
-
-The motivation for the development of this plugin came from project work frequently requiring these four (4) pieces of metadata to be added to, edited in, and removed from multiple profiles within a project space. Manually editing the profile metadata to accomplish this was time consuming, error prone, and a drag to say the least. 
-
-This plugin could be expanded to accommodate other types of profile metadata such as user permissions, tab visibilities and record type accesses.
+A plugin for Salesforce DX CLI that provides ability to add, edit, and remove Apex Classes, Visualforce Pages, Objects, and Fields from profiles within Salesforce projects that are using older style of metadata file in the root of the project directory is required). 
 
 ## Setup
 
 ### **Install as plugin (Recommended approach for Installing)**
 
-Install plugin using command : `sfdx plugins:install profile-modifier-plugin`
+Install plugin using command : `sfdx plugins:install oldprofile-modifier-plugin`
 
 ### **Commands**
 
@@ -48,7 +45,7 @@ EXAMPLES
     $ sfdx oldprofile:class:add --name MyClass --enabled // Adds MyClass to all profiles
 ```
 
-_See code: [src/commands/profile/class/add.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/class/add.ts)_
+_See code: [src/commands/profile/class/add.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/class/add.ts)_
 
 ## `sfdx oldprofile:class:delete`
 
@@ -70,7 +67,7 @@ EXAMPLES
     $ sfdx oldprofile:class:delete --name MyClass // Removes MyClass from all profiles
 ```
 
-_See code: [src/commands/profile/class/delete.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/class/delete.ts)_
+_See code: [src/commands/profile/class/delete.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/class/delete.ts)_
 
 ## `sfdx oldprofile:class:edit`
 
@@ -95,7 +92,7 @@ EXAMPLES
     $ sfdx oldprofile:class:edit --name MyClass --rename YourClass --enabled // Edits MyClass in all profiles
 ```
 
-_See code: [src/commands/profile/class/edit.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/class/edit.ts)_
+_See code: [src/commands/profile/class/edit.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/class/edit.ts)_
 
 ## `sfdx oldprofile:field:add`
 
@@ -119,7 +116,7 @@ EXAMPLES
     $ sfdx oldprofile:field:add --name MyField --permissions re // Adds MyField to all profiles with both editable and readable set to true
 ```
 
-_See code: [src/commands/profile/field/add.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/field/add.ts)_
+_See code: [src/commands/profile/field/add.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/field/add.ts)_
 
 ## `sfdx oldprofile:field:delete`
 
@@ -141,7 +138,7 @@ EXAMPLES
     $ sfdx oldprofile:field:delete --name MyObject.MyField // Removes MyObject.MyField from all profiles
 ```
 
-_See code: [src/commands/profile/field/delete.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/field/delete.ts)_
+_See code: [src/commands/profile/field/delete.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/field/delete.ts)_
 
 ## `sfdx oldprofile:field:edit`
 
@@ -167,7 +164,7 @@ EXAMPLES
     $ sfdx oldprofile:field:edit --name MyObject.MyField --rename MyObject.YourField --permissions re // Edits MyObject.MyField in all profiles
 ```
 
-_See code: [src/commands/profile/field/edit.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/field/edit.ts)_
+_See code: [src/commands/profile/field/edit.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/field/edit.ts)_
 
 ## `sfdx oldprofile:object:add`
 
@@ -192,7 +189,7 @@ EXAMPLES
     $ sfdx oldprofile:object:add --name MyObject --permissions credmv
 ```
 
-_See code: [src/commands/profile/object/add.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/object/add.ts)_
+_See code: [src/commands/profile/object/add.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/object/add.ts)_
 
 ## `sfdx oldprofile:object:delete`
 
@@ -214,7 +211,7 @@ EXAMPLES
     $ sfdx oldprofile:object:delete --name MyObject // Removes MyObject from all profiles
 ```
 
-_See code: [src/commands/profile/object/delete.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/object/delete.ts)_
+_See code: [src/commands/profile/object/delete.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/object/delete.ts)_
 
 ## `sfdx oldprofile:object:edit`
 
@@ -240,7 +237,7 @@ EXAMPLES
     $ sfdx oldprofile:object:edit --name MyObject --rename MyObject --permissions credmv // Edits MyObject in all profiles
 ```
 
-_See code: [src/commands/profile/object/edit.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/object/edit.ts)_
+_See code: [src/commands/profile/object/edit.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/object/edit.ts)_
 
 ## `sfdx oldprofile:page:add`
 
@@ -264,7 +261,7 @@ EXAMPLES
     $ sfdx oldprofile:page:add --name MyPage --enabled // Adds MyPage to all profiles
 ```
 
-_See code: [src/commands/profile/page/add.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/page/add.ts)_
+_See code: [src/commands/profile/page/add.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/page/add.ts)_
 
 ## `sfdx oldprofile:page:delete`
 
@@ -286,7 +283,7 @@ EXAMPLES
     $ sfdx oldprofile:page:delete --name MyPage // Removes MyPage from all profiles
 ```
 
-_See code: [src/commands/profile/page/delete.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/page/delete.ts)_
+_See code: [src/commands/profile/page/delete.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/page/delete.ts)_
 
 ## `sfdx oldprofile:page:edit`
 
@@ -312,4 +309,4 @@ EXAMPLES
     $ sfdx oldprofile:page:edit --name MyPage --rename YourPage --enabled // Edits MyPage in all profiles
 ```
 
-_See code: [src/commands/profile/page/edit.ts](https://github.com/seanrussell/profile-modifier-plugin/blob/main/src/commands/profile/page/edit.ts)_
+_See code: [src/commands/profile/page/edit.ts](https://github.com/gruszkowy/profile-modifier-plugin/blob/main/src/commands/profile/page/edit.ts)_

@@ -5,7 +5,7 @@ import { editInProfiles } from '../../../shared/edit';
 import { getDataForDisplay, getFileNames } from '../../../shared/util';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('profile-modifier-plugin', 'class');
+const messages = Messages.loadMessages('oldprofile-modifier-plugin', 'class');
 export default class Edit extends SfdxCommand {
 
   public static description = messages.getMessage('editCommandDescription');

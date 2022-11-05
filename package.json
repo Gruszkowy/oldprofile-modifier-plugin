@@ -3,12 +3,12 @@
   "description": "Add, edit, delete apex classes, visualforce pages, objects, and fields from older style of profile metadata files",
   "version": "1.0.8",
   "author": "Tomek Guszczynski",
-  "bugs": "https://github.com/gruszkowy/oldprofile-modifier-plugin/issues",
+  "bugs": "https://github.com/Gruszkowy/oldprofile-modifier-plugin/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/errors": "^1",
-    "@salesforce/command": "^2",
+    "@salesforce/command": "^5.2.20",
     "@salesforce/core": "^2",
     "fs-extra": "^9.1.0",
     "tslib": "^2",
@@ -40,7 +40,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/gruszkowy/oldprofile-modifier-plugin",
+  "homepage": "https://github.com/Gruszkowy/oldprofile-modifier-plugin",
   "keywords": [
     "sfdx-plugin"
   ],
@@ -66,7 +66,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/gruszkowy/oldprofile-modifier-plugin",
+  "repository": "oldprofile-modifier-plugin",
   "scripts": {
     "build": "rimraf lib && tsc",
     "lint": "tslint --project . --config tslint.json --format stylish",
