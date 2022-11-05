@@ -1,73 +1,58 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import format from 'xml-formatter';
+const format = require('xml-formatter');
 import * as xml2js from 'xml2js';
 
-const FILE_SUFFIX = '.profile-meta.xml';
+const FILE_SUFFIX = '.profile';
 
-const readFiles = directories => {
+const readFiles = directory => {
   const files = [];
-  for (const directory of directories) {
-    if (fs.existsSync(directory)) {
-      const filesRead = fs.readdirSync(directory).filter(f => path.extname(f) === '.xml');
-      for (const fileRead of filesRead) {
-        files.push(`${directory}${fileRead}`);
-      }
+  if (fs.existsSync(directory)) {
+    console.log(directory);
+    const filesRead = fs.readdirSync(directory).filter(f => path.extname(f) === '.profile');
+    for (const fileRead of filesRead) {
+      files.push(`${directory}${fileRead}`);
     }
   }
+  console.log(files);
   return files;
 };
 
-const getFileNames = (directories, profiles, basepath) => {
+const getFileNames = (profiles) => {
+  const directory = './src/profiles/'
   if (profiles) {
     const profilePaths = [];
     for (const profile of profiles) {
-      if (profile.indexOf('/') !== -1 || profile.indexOf('\\') !== -1) {
-        profilePaths.push((profile.endsWith(FILE_SUFFIX)) ? `${basepath}${profile}` : `${basepath}${profile}${FILE_SUFFIX}`);
-      } else {
-        for (const directory of directories) {
-          profilePaths.push((profile.endsWith(FILE_SUFFIX)) ? `${directory}${profile}` : `${directory}${profile}${FILE_SUFFIX}`);
-        }
-      }
+      profilePaths.push((profile.endsWith(FILE_SUFFIX)) ? `${directory}${profile}` : `${directory}${profile}${FILE_SUFFIX}`);
     }
     return profilePaths;
   } else {
-   return readFiles(directories);
+   return readFiles(directory);
   }
 };
 
 const getObjectFieldFileNames = async (directories) => {
-  let fields = [];
-
+  let fields: string[] = [];
   for (const directory of directories) {
     if (fs.existsSync(directory)) {
-      const parts = directory.split('/');
-      const objName = parts[parts.length - 3];
-      const files = fs.readdirSync(directory);
-      for (const file of files) {
-        const filepath = `${directory}${file}`;
-
-        if (fs.existsSync(filepath)) {
-          const json = await getParsed(await fs.readFile(filepath));
-
-          if (json['CustomField']['type'] !== 'MasterDetail' &&
-             (!json['CustomField']['required'] || json['CustomField']['required'] !== 'true')) {
-            fields.push(`${objName}.${json['CustomField']['fullName']}`);
-          }
+      const objName: string = directory.substring(directory.lastIndexOf("/") + 1, directory.indexOf(".object"))
+      const json = await getParsed(await fs.readFile(directory));
+      for (const field of json.CustomObject.fields) {
+        if (field.type !== 'MasterDetail' && field.required === 'false') {
+          fields.push(`${objName}.${field.fullName}`);
         }
       }
     }
   }
-
   return fields;
 };
 
-const getDataForDisplay = (filesModified, startPos, action, metadata) => {
+const getDataForDisplay = (filesModified, action, metadata) => {
   return filesModified.map(file => {
     return {
       Action: action,
       MetadataType: metadata,
-      ProjectFile: file.substring(startPos)
+      ProjectFile: file
     };
   });
 };
@@ -86,7 +71,7 @@ const formatMetadata = (json, alphabetize: boolean) => {
 
   const xml = builder.buildObject(json);
 
-  const xmlDoc = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${xml}`;
+  const xmlDoc = `<?xml version="1.0" encoding="UTF-8"?>\n${xml}`;
 
   const formattedXml = format(xmlDoc, {
       indentation: '    ',

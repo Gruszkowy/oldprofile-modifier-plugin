@@ -1,9 +1,9 @@
 {
-  "name": "profile-modifier-plugin",
-  "description": "Add, edit, delete apex classes, visualforce pages, objects, and fields from profile metadata files",
+  "name": "oldprofile-modifier-plugin",
+  "description": "Add, edit, delete apex classes, visualforce pages, objects, and fields from older style of profile metadata files",
   "version": "1.0.8",
-  "author": "Sean Russell",
-  "bugs": "https://github.com/seanrussell/profile-modifier-plugin/issues",
+  "author": "Tomek Guszczynski",
+  "bugs": "https://github.com/gruszkowy/oldprofile-modifier-plugin/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -40,13 +40,13 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/seanrussell/profile-modifier-plugin",
+  "homepage": "https://github.com/gruszkowy/oldprofile-modifier-plugin",
   "keywords": [
     "sfdx-plugin"
   ],
   "license": "MIT",
   "oclif": {
-    "commands": "./lib/src/commands",
+    "commands": "./lib/commands",
     "bin": "sfdx",
     "topics": {
       "profile:class": {
@@ -66,7 +66,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/seanrussell/profile-modifier-plugin",
+  "repository": "https://github.com/gruszkowy/oldprofile-modifier-plugin",
   "scripts": {
     "build": "rimraf lib && tsc",
     "lint": "tslint --project . --config tslint.json --format stylish",

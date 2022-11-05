@@ -3,12 +3,13 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "./lib",
-    "rootDirs": ["./src", "./test"],
+    "rootDirs": ["./src"],
     "baseUrl": "./",
     "importHelpers": true,
     "esModuleInterop" : true,
-    "types": ["node", "jest", "fs-extra"],
-    "target": "ES6"
+    "types": ["node"],
+    "target": "ES6",
+    "noUnusedLocals": false
   },
   "include": [
     "./src/**/*",

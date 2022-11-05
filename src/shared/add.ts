@@ -11,7 +11,7 @@ const addToProfiles = async (fileNames: string[], names: string[], enabled: bool
 
       switch (type) {
         case 'class':
-          let classes = json['Profile']['classAccesses'];
+          let classes: any[] = json['Profile']['classAccesses'];
           if (classes && !Array.isArray(classes)) {
             classes = [classes];
             json['Profile']['classAccesses'] = classes;
@@ -29,7 +29,12 @@ const addToProfiles = async (fileNames: string[], names: string[], enabled: bool
                 apexClass: name,
                 enabled: (enabled) ? 'true' : 'false'
               };
-              classes.push(newClass);
+              let classesToSort: any[] = [...classes];
+              classesToSort.push(newClass);
+              classesToSort.sort((a, b) => (a['apexClass'] > b['apexClass']) ? 1 : -1);
+              const previousItem: string = classesToSort[classesToSort.findIndex(x => x['apexClass'] === name) - 1].apexClass;
+              const index: number = classes.findIndex(item => item['apexClass'] === previousItem) + 1;
+              classes.splice(index, 0, newClass);
             }
           }
           if (alphabetize) {
@@ -56,7 +61,12 @@ const addToProfiles = async (fileNames: string[], names: string[], enabled: bool
                 field: name,
                 readable: (!permissions || permissions.indexOf('r') !== -1) ? 'true' : 'false'
               };
-              fields.push(newField);
+              let fieldsToSort: any[] = [...fields];
+              fieldsToSort.push(newField);
+              fieldsToSort.sort((a, b) => (a['field'] > b['field']) ? 1 : -1);
+              const previousItem: string = fieldsToSort[fieldsToSort.findIndex(x => x['field'] === name) - 1].field;
+              const index: number = fields.findIndex(item => item['field'] === previousItem) + 1;
+              fields.splice(index, 0, newField);
             }
           }
           if (alphabetize) {
@@ -87,7 +97,12 @@ const addToProfiles = async (fileNames: string[], names: string[], enabled: bool
                 object: name,
                 viewAllRecords: (!permissions || permissions.indexOf('v') !== -1) ? 'true' : 'false'
               };
-              objects.push(newObject);
+              let objectsToSort: any[] = [...objects];
+              objectsToSort.push(newObject);
+              objectsToSort.sort((a, b) => (a['object'] > b['object']) ? 1 : -1);
+              const previousItem: string = objectsToSort[objectsToSort.findIndex(x => x['object'] === name) - 1].object;
+              const index: number = objects.findIndex(item => item['object'] === previousItem) + 1;
+              objects.splice(index, 0, newObject);
             }
           }
           if (alphabetize) {
@@ -113,7 +128,12 @@ const addToProfiles = async (fileNames: string[], names: string[], enabled: bool
                 apexPage: name,
                 enabled: (enabled) ? 'true' : 'false'
               };
-              pages.push(newPage);
+              let pagesToSort: any[] = [...pages];
+              pagesToSort.push(newPage);
+              pagesToSort.sort((a, b) => (a['apexPage'] > b['apexPage']) ? 1 : -1);
+              const previousItem: string = pagesToSort[pagesToSort.findIndex(x => x['apexPage'] === name) - 1].apexPage;
+              const index: number = pages.findIndex(item => item['apexPage'] === previousItem) + 1;
+              objects.splice(index, 0, newPage);
             }
           }
           if (alphabetize) {
